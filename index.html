@@ -307,12 +307,83 @@
     }
     .storage-note.error { color: #b55046; }
 
+    .subtitle { max-width: 370px; }
+    .toolbar { padding: 0 32px 18px; }
+    .search-row { position: relative; margin-bottom: 15px; }
+    .search-row svg { position: absolute; top: 12px; left: 12px; width: 16px; height: 16px; color: var(--muted); pointer-events: none; }
+    .search-input { width: 100%; height: 40px; padding: 0 12px 0 37px; border: 1px solid var(--line); border-radius: 10px; outline: 0; background: var(--page); color: var(--ink); font-size: 13px; }
+    .search-input:focus { border-color: var(--focus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 18%, transparent); }
+    .filter-row { display: flex; gap: 5px; overflow-x: auto; scrollbar-width: none; }
+    .filter-row::-webkit-scrollbar { display: none; }
+    .filter-button { display: inline-flex; min-height: 34px; flex: 0 0 auto; align-items: center; gap: 6px; padding: 0 10px; border: 0; border-radius: 9px; background: transparent; color: var(--muted); cursor: pointer; font-size: 12px; font-weight: 600; transition: background 160ms ease, color 160ms ease; }
+    .filter-button:hover { background: var(--page); color: var(--ink); }
+    .filter-button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); }
+    .filter-count { font-size: 10px; opacity: .75; }
+    .list-tools { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 32px 10px; }
+    .list-tools-label { color: var(--muted); font-size: 11px; }
+    .sort-select { max-width: 132px; padding: 5px 7px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--muted); font-size: 11px; }
+    .task { position: relative; flex-wrap: wrap; gap: 11px; padding: 9px 0; }
+    .task-main { display: flex; min-width: 0; flex: 1; align-items: center; gap: 12px; }
+    .task-copy { min-width: 0; flex: 1; }
+    .task-text { display: block; }
+    .task-meta { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
+    .task-chip { display: inline-flex; align-items: center; gap: 4px; padding: 2px 7px; border-radius: 99px; background: var(--page); color: var(--muted); font-size: 10px; }
+    .task-chip.priority-high { background: #faeae6; color: #a64e3e; }
+    .task-chip.priority-medium { background: #f5f0df; color: #8a702d; }
+    .task-chip.priority-low { background: var(--accent-soft); color: var(--accent); }
+    @media (prefers-color-scheme: dark) {
+      .task-chip.priority-high { background: #452b28; color: #efad9f; }
+      .task-chip.priority-medium { background: #403923; color: #e4ce82; }
+    }
+    .task-note { width: 100%; margin-top: 3px; color: var(--muted); font-size: 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .task-actions { display: flex; gap: 2px; }
+    .task-action { display: grid; width: 30px; height: 30px; place-items: center; border: 0; border-radius: 8px; background: transparent; color: var(--muted); cursor: pointer; opacity: .65; }
+    .task-action:hover, .task-action:focus-visible { background: var(--accent-soft); color: var(--ink); opacity: 1; }
+    .task-action svg { width: 15px; height: 15px; }
+    .delete-task { width: 30px; height: 30px; flex-basis: 30px; opacity: .65; }
+    .task:hover .delete-task, .delete-task:focus-visible { opacity: 1; }
+    .task-editor { display: grid; width: 100%; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px 0 3px 34px; animation: arrive 180ms ease both; }
+    .editor-field { min-width: 0; height: 36px; padding: 0 9px; border: 1px solid var(--line); border-radius: 8px; background: var(--page); color: var(--ink); font: inherit; font-size: 12px; }
+    .editor-field:focus { outline: 2px solid color-mix(in srgb, var(--focus) 35%, transparent); outline-offset: 1px; }
+    .editor-field.full { grid-column: 1 / -1; }
+    textarea.editor-field { height: 58px; padding-top: 8px; resize: vertical; }
+    .editor-actions { display: flex; grid-column: 1 / -1; justify-content: flex-end; gap: 7px; }
+    .mini-button { padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--muted); cursor: pointer; font-size: 11px; font-weight: 600; }
+    .mini-button.primary { border-color: var(--accent); background: var(--accent); color: var(--card); }
+    .add-area { display: block; }
+    .add-main { display: flex; gap: 10px; }
+    .task-options { margin-top: 13px; }
+    .task-options summary { width: fit-content; color: var(--muted); cursor: pointer; font-size: 12px; }
+    .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding-top: 12px; }
+    .options-grid label { display: grid; gap: 4px; color: var(--muted); font-size: 10px; font-weight: 600; }
+    .options-grid label.notes-label { grid-column: 1 / -1; }
+    .options-grid .editor-field { width: 100%; }
+    .below-card { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 14px; margin-top: 15px; }
+    .utility-button { padding: 4px 0; border: 0; background: transparent; color: var(--muted); cursor: pointer; font-size: 11px; }
+    .utility-button:hover { color: var(--accent); }
+    .utility-button:disabled { cursor: default; opacity: .4; }
+    .toast { position: fixed; z-index: 3; right: 20px; bottom: 20px; display: flex; max-width: min(440px, calc(100vw - 32px)); align-items: center; gap: 12px; padding: 12px 15px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); box-shadow: var(--shadow); color: var(--ink); font-size: 13px; opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity 180ms ease, transform 180ms ease; }
+    .toast.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .toast button { border: 0; background: transparent; color: var(--accent); cursor: pointer; font-size: 12px; font-weight: 700; }
+    .spotlight { animation: spotlight 1.4s ease both; }
+    @keyframes spotlight { 0%, 100% { background: transparent; } 18%, 72% { background: var(--accent-soft); } }
+    .celebration { position: fixed; z-index: 2; inset: 0; display: grid; place-items: center; background: rgb(20 30 20 / 18%); animation: arrive 220ms ease both; }
+    .celebration-card { width: min(360px, calc(100vw - 32px)); padding: 28px; border: 1px solid var(--line); border-radius: 20px; background: var(--card); box-shadow: var(--shadow); text-align: center; }
+    .celebration-card .emoji { font-size: 38px; }
+    .celebration-card h2 { margin: 8px 0; font-size: 22px; letter-spacing: -.04em; }
+    .celebration-card p { margin: 0 0 16px; color: var(--muted); font-size: 13px; }
+    .celebration-card button { padding: 9px 14px; border: 0; border-radius: 9px; background: var(--accent); color: var(--card); cursor: pointer; font-weight: 650; }
+    .hidden-file { display: none; }
+
     @media (max-width: 520px) {
       body { padding: 40px 16px 32px; }
       .card-head { padding: 27px 23px 21px; }
       .task-list { padding: 0 23px; }
       .add-area { padding: 20px 23px 23px; }
-      .delete-task { opacity: .7; }
+      .toolbar, .list-tools { padding-right: 23px; padding-left: 23px; }
+      .delete-task, .task-action { opacity: .8; }
+      .task-editor { padding-left: 0; }
+      .toast { right: 16px; bottom: 16px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -335,7 +406,7 @@
     <section class="list-card" aria-labelledby="page-title">
       <header class="card-head">
         <h1 id="page-title">A little progress<br>goes a long way.</h1>
-        <p class="subtitle">Make space for what matters today.</p>
+        <p class="subtitle" id="subtitle">Make space for what matters today.</p>
         <div class="progress-wrap">
           <div class="progress-label">
             <span id="remaining-label">0 tasks left</span>
@@ -347,29 +418,87 @@
         </div>
       </header>
 
+      <section class="toolbar" aria-label="Task filters and search">
+        <div class="search-row">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.8" cy="8.8" r="5.8" stroke="currentColor" stroke-width="1.5"/><path d="m13.2 13.2 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <input class="search-input" id="search-input" type="search" placeholder="Find a task (or hide from it)..." aria-label="Search tasks">
+        </div>
+        <nav class="filter-row" aria-label="Filter tasks">
+          <button class="filter-button" type="button" data-filter="all" aria-pressed="true">Everything <span class="filter-count" id="count-all">0</span></button>
+          <button class="filter-button" type="button" data-filter="active" aria-pressed="false">Still alive <span class="filter-count" id="count-active">0</span></button>
+          <button class="filter-button" type="button" data-filter="today" aria-pressed="false">Due today <span class="filter-count" id="count-today">0</span></button>
+          <button class="filter-button" type="button" data-filter="upcoming" aria-pressed="false">Later <span class="filter-count" id="count-upcoming">0</span></button>
+          <button class="filter-button" type="button" data-filter="done" aria-pressed="false">Done-ish <span class="filter-count" id="count-done">0</span></button>
+        </nav>
+      </section>
+      <div class="list-tools">
+        <span class="list-tools-label" id="list-caption">Your tiny army</span>
+        <label class="list-tools-label" for="sort-select">Sort
+          <select class="sort-select" id="sort-select" aria-label="Sort tasks">
+            <option value="custom">My order</option>
+            <option value="priority">Priority first</option>
+            <option value="due">Due date</option>
+          </select>
+        </label>
+      </div>
+
       <ul class="task-list" id="task-list" aria-label="Your tasks"></ul>
-      <p class="empty-state" id="empty-state">All clear. Add a task to get started.</p>
+      <p class="empty-state" id="empty-state">All clear. The task goblin is between jobs.</p>
 
       <form class="add-area" id="add-form">
-        <label for="task-input" hidden>Add a task</label>
-        <input class="task-input" id="task-input" name="task" type="text" maxlength="120" placeholder="Add a task..." autocomplete="off" required>
-        <button class="add-button" type="submit">
-          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 3.25v9.5M3.25 8h9.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-          Add task
-        </button>
+        <div class="add-main">
+          <label for="task-input" hidden>Add a task</label>
+          <input class="task-input" id="task-input" name="task" type="text" maxlength="120" placeholder="Add a task..." autocomplete="off" required>
+          <button class="add-button" type="submit">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 3.25v9.5M3.25 8h9.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            Add task
+          </button>
+        </div>
+        <details class="task-options">
+          <summary>Add a due date, priority, or dramatic backstory</summary>
+          <div class="options-grid">
+            <label for="new-due">Due date
+              <input class="editor-field" id="new-due" type="date">
+            </label>
+            <label for="new-priority">Importance level
+              <select class="editor-field" id="new-priority">
+                <option value="low">Low stakes</option>
+                <option value="medium" selected>Medium stakes</option>
+                <option value="high">The deadline has teeth</option>
+              </select>
+            </label>
+            <label for="new-category">Department of this task
+              <select class="editor-field" id="new-category">
+                <option value="">Uncategorized</option>
+                <option>Work</option><option>Home</option><option>Personal</option><option>Errands</option><option>Learning</option>
+              </select>
+            </label>
+            <label class="notes-label" for="new-notes">Notes (future-you says thanks)
+              <textarea class="editor-field" id="new-notes" maxlength="500" placeholder="Details, links, or a tiny pep talk..."></textarea>
+            </label>
+          </div>
+        </details>
       </form>
     </section>
 
-    <p class="storage-note" id="storage-note" role="status" aria-live="polite">Your list is saved on this device.</p>
+    <div class="below-card" aria-label="Task list tools">
+      <button class="utility-button" id="pick-button" type="button">🎲 Pick my next quest</button>
+      <button class="utility-button" id="clear-button" type="button">Sweep completed away</button>
+      <button class="utility-button" id="export-button" type="button">Export my tiny empire</button>
+      <button class="utility-button" id="import-button" type="button">Import tasks</button>
+      <input class="hidden-file" id="import-file" type="file" accept="application/json,.json">
+    </div>
+    <p class="storage-note" id="storage-note" role="status" aria-live="polite">Your list is saved on this device. The goblin has been informed.</p>
+    <div class="toast" id="toast" role="status" aria-live="polite"><span id="toast-message"></span><button id="undo-button" type="button" hidden>Undo</button></div>
   </main>
 
   <script>
     (() => {
       const STORAGE_KEY = "little-list.tasks.v1";
       const examples = [
-        { id: "example-1", text: "Take a quiet moment for coffee", completed: true },
-        { id: "example-2", text: "Reply to the messages I’ve been meaning to", completed: false },
-        { id: "example-3", text: "Step outside for a little fresh air", completed: false }
+        { id: "example-1", text: "Take a quiet moment for coffee", completed: true, priority: "low", category: "Personal", notes: "The mug is part of the ritual." },
+        { id: "example-2", text: "Reply to the messages I’ve been meaning to", completed: false, priority: "high", category: "Work", notes: "Future me has excellent typing skills." },
+        { id: "example-3", text: "Step outside for a little fresh air", completed: false, priority: "medium", category: "Personal", notes: "", dueDate: "" }
       ];
 
       const list = document.querySelector("#task-list");
@@ -381,12 +510,26 @@
       const progressFill = document.querySelector("#progress-fill");
       const progressbar = document.querySelector("#progressbar");
       const storageNote = document.querySelector("#storage-note");
+      const searchInput = document.querySelector("#search-input");
+      const sortSelect = document.querySelector("#sort-select");
+      const toast = document.querySelector("#toast");
+      const toastMessage = document.querySelector("#toast-message");
+      const undoButton = document.querySelector("#undo-button");
+      const filterButtons = [...document.querySelectorAll(".filter-button")];
+      let activeFilter = "all";
+      let undoAction = null;
+      let toastTimer;
       let tasks = [];
+
+      function todayKey() {
+        const now = new Date();
+        return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+      }
 
       document.querySelector("#today").textContent = new Intl.DateTimeFormat(undefined, {
         weekday: "short", month: "short", day: "numeric"
       }).format(new Date());
-      document.querySelector("#today").dateTime = new Date().toISOString().slice(0, 10);
+      document.querySelector("#today").dateTime = todayKey();
 
       function showStorageError(message) {
         storageNote.textContent = message;
@@ -403,23 +546,35 @@
         }
       }
 
+      function normalizeTask(task) {
+        if (!task || typeof task.id !== "string" || typeof task.text !== "string" || typeof task.completed !== "boolean") {
+          throw new Error("Saved task data has an invalid format.");
+        }
+        return {
+          id: task.id,
+          text: task.text,
+          completed: task.completed,
+          priority: ["low", "medium", "high"].includes(task.priority) ? task.priority : "medium",
+          category: typeof task.category === "string" ? task.category : "",
+          notes: typeof task.notes === "string" ? task.notes : "",
+          dueDate: typeof task.dueDate === "string" ? task.dueDate : ""
+        };
+      }
+
       function readTasks() {
         try {
           const saved = localStorage.getItem(STORAGE_KEY);
           if (saved === null) {
-            tasks = examples.map(task => ({ ...task }));
+            tasks = examples.map(normalizeTask);
             saveTasks();
             return;
           }
           const parsed = JSON.parse(saved);
-          if (!Array.isArray(parsed) || !parsed.every(task =>
-            task && typeof task.id === "string" && typeof task.text === "string" && typeof task.completed === "boolean"
-          )) {
-            throw new Error("Saved task data has an invalid format.");
-          }
-          tasks = parsed;
+          if (!Array.isArray(parsed)) throw new Error("Saved task data has an invalid format.");
+          tasks = parsed.map(normalizeTask);
+          if (parsed.some(task => task.priority === undefined || task.category === undefined || task.notes === undefined || task.dueDate === undefined)) saveTasks();
         } catch (error) {
-          tasks = examples.map(task => ({ ...task }));
+          tasks = examples.map(normalizeTask);
           showStorageError("Saved tasks could not be read. Showing the example list instead.");
           if (error instanceof DOMException && error.name === "SecurityError") {
             showStorageError("Storage is unavailable in this browser. Your list may not be saved.");
@@ -427,10 +582,116 @@
         }
       }
 
+      function escapeText(text) {
+        return String(text);
+      }
+
+      function dateLabel(date) {
+        if (!date) return "";
+        const parsed = new Date(`${date}T12:00:00`);
+        if (Number.isNaN(parsed.getTime())) return "";
+        const today = todayKey();
+        if (date < today) return `Overdue · ${new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric" }).format(parsed)}`;
+        if (date === today) return "Due today";
+        return `Due ${new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric" }).format(parsed)}`;
+      }
+
+      function iconButton(label, icon, className) {
+        const button = document.createElement("button");
+        button.className = className;
+        button.type = "button";
+        button.setAttribute("aria-label", label);
+        button.innerHTML = icon;
+        return button;
+      }
+
+      function makeEditor(task) {
+        const editor = document.createElement("form");
+        editor.className = "task-editor";
+        editor.setAttribute("aria-label", `Edit ${task.text}`);
+
+        const title = document.createElement("input");
+        title.className = "editor-field full";
+        title.maxLength = 120;
+        title.value = task.text;
+        title.setAttribute("aria-label", "Task name");
+        title.required = true;
+
+        const due = document.createElement("input");
+        due.className = "editor-field";
+        due.type = "date";
+        due.value = task.dueDate;
+        due.setAttribute("aria-label", "Due date");
+
+        const priority = document.createElement("select");
+        priority.className = "editor-field";
+        priority.setAttribute("aria-label", "Priority");
+        [["low", "Low stakes"], ["medium", "Medium stakes"], ["high", "Deadline has teeth"]].forEach(([value, label]) => {
+          const option = document.createElement("option");
+          option.value = value;
+          option.textContent = label;
+          priority.append(option);
+        });
+        priority.value = task.priority;
+
+        const category = document.createElement("select");
+        category.className = "editor-field";
+        category.setAttribute("aria-label", "Category");
+        [["", "Uncategorized"], ["Work", "Work"], ["Home", "Home"], ["Personal", "Personal"], ["Errands", "Errands"], ["Learning", "Learning"]].forEach(([value, label]) => {
+          const option = document.createElement("option");
+          option.value = value;
+          option.textContent = label;
+          category.append(option);
+        });
+        category.value = task.category;
+
+        const notes = document.createElement("textarea");
+        notes.className = "editor-field full";
+        notes.maxLength = 500;
+        notes.value = task.notes;
+        notes.placeholder = "Notes, links, or a tiny pep talk...";
+        notes.setAttribute("aria-label", "Notes");
+
+        const buttons = document.createElement("div");
+        buttons.className = "editor-actions";
+        const cancel = document.createElement("button");
+        cancel.className = "mini-button";
+        cancel.type = "button";
+        cancel.textContent = "Cancel";
+        cancel.addEventListener("click", render);
+        const save = document.createElement("button");
+        save.className = "mini-button primary";
+        save.type = "submit";
+        save.textContent = "Save changes";
+        buttons.append(cancel, save);
+
+        editor.append(title, due, priority, category, notes, buttons);
+        editor.addEventListener("submit", event => {
+          event.preventDefault();
+          const updatedTitle = title.value.trim();
+          if (!updatedTitle) {
+            title.focus();
+            return;
+          }
+          Object.assign(task, {
+            text: updatedTitle,
+            dueDate: due.value,
+            priority: priority.value,
+            category: category.value,
+            notes: notes.value.trim()
+          });
+          saveTasks();
+          render();
+          announce("Task upgraded. The goblin has updated its paperwork.");
+        });
+        return editor;
+      }
+
       function makeTask(task, index) {
         const row = document.createElement("li");
         row.className = `task${task.completed ? " is-complete" : ""}`;
         row.style.animationDelay = `${Math.min(index, 6) * 35}ms`;
+        row.dataset.taskId = task.id;
 
         const checkWrap = document.createElement("span");
         checkWrap.className = "check-wrap";
@@ -441,9 +702,12 @@
         checkbox.checked = task.completed;
         checkbox.setAttribute("aria-label", `${task.completed ? "Mark incomplete" : "Complete"}: ${task.text}`);
         checkbox.addEventListener("change", () => {
+          const unfinishedBefore = tasks.some(item => !item.completed);
           task.completed = checkbox.checked;
           saveTasks();
           render();
+          if (task.completed && unfinishedBefore && !tasks.some(item => !item.completed)) celebrate();
+          else if (task.completed) announce(["A+ task wrangling.", "Look at you, defeating the tiny rectangle.", "The task goblin is mildly impressed."][Math.floor(Math.random() * 3)]);
         });
 
         const checkUi = document.createElement("span");
@@ -452,28 +716,99 @@
         checkUi.innerHTML = '<svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8.2 2.8 2.7 6.2-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
         checkWrap.append(checkbox, checkUi);
 
+        const main = document.createElement("div");
+        main.className = "task-main";
+        const copy = document.createElement("div");
+        copy.className = "task-copy";
         const text = document.createElement("span");
         text.className = "task-text";
-        text.textContent = task.text;
+        text.textContent = escapeText(task.text);
+        copy.append(text);
+
+        const chips = document.createElement("div");
+        chips.className = "task-meta";
+        const priorityChip = document.createElement("span");
+        priorityChip.className = `task-chip priority-${task.priority}`;
+        priorityChip.textContent = ({ low: "☁️ Low stakes", medium: "🌤 Medium", high: "🔥 High stakes" })[task.priority] || "🌤 Medium";
+        chips.append(priorityChip);
+        if (task.category) {
+          const category = document.createElement("span");
+          category.className = "task-chip";
+          category.textContent = task.category;
+          chips.append(category);
+        }
+        if (task.dueDate) {
+          const due = document.createElement("span");
+          due.className = "task-chip";
+          due.textContent = dateLabel(task.dueDate);
+          if (task.dueDate < todayKey() && !task.completed) due.style.color = "#b55046";
+          chips.append(due);
+        }
+        if (task.notes) {
+          const note = document.createElement("span");
+          note.className = "task-note";
+          note.textContent = escapeText(task.notes);
+          copy.append(note);
+        }
+        copy.append(chips);
+        main.append(checkWrap, copy);
 
         const remove = document.createElement("button");
         remove.className = "delete-task";
         remove.type = "button";
         remove.setAttribute("aria-label", `Delete: ${task.text}`);
         remove.innerHTML = '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 6h11M8 6V4.5h4V6m2.5 0-.6 9.2a1 1 0 0 1-1 .9H7.1a1 1 0 0 1-1-.9L5.5 6m2.8 2.2v5m3.4-5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-        remove.addEventListener("click", () => {
-          tasks = tasks.filter(item => item.id !== task.id);
-          saveTasks();
-          render();
-        });
+        remove.addEventListener("click", () => removeTasks([task.id]));
 
-        row.append(checkWrap, text, remove);
+        const edit = iconButton(`Edit: ${task.text}`, '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m12.8 4.2 3 3m-9.9 9.1-3.1.7.7-3.1L13.9 3.5a1.8 1.8 0 0 1 2.6 2.6L6.6 16.1Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>', "task-action");
+        edit.addEventListener("click", () => {
+          const existing = row.querySelector(".task-editor");
+          if (existing) existing.remove();
+          else {
+            row.append(makeEditor(task));
+            row.querySelector(".task-editor input").focus();
+          }
+        });
+        const actions = document.createElement("div");
+        actions.className = "task-actions";
+        actions.append(edit, remove);
+
+        row.append(main, actions);
         return row;
       }
 
+      function filteredTasks() {
+        const today = todayKey();
+        const query = searchInput.value.trim().toLocaleLowerCase();
+        let visible = tasks.filter(task => {
+          const matchesFilter = activeFilter === "all" ||
+            (activeFilter === "active" && !task.completed) ||
+            (activeFilter === "today" && !task.completed && task.dueDate === today) ||
+            (activeFilter === "upcoming" && !task.completed && task.dueDate > today) ||
+            (activeFilter === "done" && task.completed);
+          const haystack = `${task.text} ${task.notes} ${task.category}`.toLocaleLowerCase();
+          return matchesFilter && (!query || haystack.includes(query));
+        });
+        if (sortSelect.value === "priority") {
+          const rank = { high: 0, medium: 1, low: 2 };
+          visible = visible.map((task, position) => ({ task, position })).sort((a, b) => rank[a.task.priority] - rank[b.task.priority] || a.position - b.position).map(item => item.task);
+        } else if (sortSelect.value === "due") {
+          visible = visible.map((task, position) => ({ task, position })).sort((a, b) => {
+            const dateA = a.task.dueDate || "9999-12-31";
+            const dateB = b.task.dueDate || "9999-12-31";
+            return dateA.localeCompare(dateB) || a.position - b.position;
+          }).map(item => item.task);
+        }
+        return visible;
+      }
+
       function render() {
-        list.replaceChildren(...tasks.map(makeTask));
-        emptyState.classList.toggle("visible", tasks.length === 0);
+        const visible = filteredTasks();
+        list.replaceChildren(...visible.map(makeTask));
+        emptyState.classList.toggle("visible", visible.length === 0);
+        if (visible.length === 0) {
+          emptyState.textContent = tasks.length === 0 ? "All clear. The task goblin is between jobs." : "No tasks here. Either you’re very organized or search is gaslighting you.";
+        }
         const completed = tasks.filter(task => task.completed).length;
         const remaining = tasks.length - completed;
         const percent = tasks.length === 0 ? 0 : Math.round(completed / tasks.length * 100);
@@ -481,7 +816,69 @@
         progressLabel.textContent = `${percent}% done`;
         progressFill.style.width = `${percent}%`;
         progressbar.setAttribute("aria-valuenow", String(percent));
+        document.querySelector("#count-all").textContent = tasks.length;
+        document.querySelector("#count-active").textContent = remaining;
+        document.querySelector("#count-today").textContent = tasks.filter(task => !task.completed && task.dueDate === todayKey()).length;
+        document.querySelector("#count-upcoming").textContent = tasks.filter(task => !task.completed && task.dueDate > todayKey()).length;
+        document.querySelector("#count-done").textContent = completed;
+        filterButtons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.filter === activeFilter)));
+        document.querySelector("#list-caption").textContent = activeFilter === "active" ? "The unfinished business bureau" : activeFilter === "done" ? "Proof you are, in fact, unstoppable" : activeFilter === "today" ? "Today’s tiny boss fights" : activeFilter === "upcoming" ? "Future-you’s incoming plot twists" : "Your tiny army";
+        document.querySelector("#clear-button").disabled = completed === 0;
+        document.querySelector("#pick-button").disabled = remaining === 0;
       }
+
+      function announce(message, undo = null) {
+        clearTimeout(toastTimer);
+        undoAction = undo;
+        toastMessage.textContent = message;
+        undoButton.hidden = !undo;
+        toast.classList.add("visible");
+        toastTimer = setTimeout(() => {
+          toast.classList.remove("visible");
+          undoAction = null;
+        }, 4200);
+      }
+
+      function removeTasks(ids) {
+        const removed = [];
+        tasks.forEach((task, index) => {
+          if (ids.includes(task.id)) removed.push({ task, index });
+        });
+        if (!removed.length) return;
+        const removedIds = new Set(ids);
+        tasks = tasks.filter(task => !removedIds.has(task.id));
+        saveTasks();
+        render();
+        announce(removed.length === 1 ? "Task sent to the task void." : `${removed.length} tasks swept into the task void.`, () => {
+          removed.forEach(({ task, index }) => tasks.splice(Math.min(index, tasks.length), 0, task));
+          saveTasks();
+          render();
+          announce("Tasks retrieved from the void. The goblin is confused.");
+        });
+      }
+
+      function celebrate() {
+        const overlay = document.createElement("div");
+        overlay.className = "celebration";
+        overlay.setAttribute("role", "dialog");
+        overlay.setAttribute("aria-modal", "true");
+        overlay.setAttribute("aria-labelledby", "celebration-title");
+        overlay.innerHTML = '<div class="celebration-card"><div class="emoji" aria-hidden="true">🏆</div><h2 id="celebration-title">You did the whole list!</h2><p>The task goblin has been promoted to a tiny consultant. It has no advice.</p><button type="button">Accept your imaginary trophy</button></div>';
+        overlay.addEventListener("click", event => {
+          if (event.target === overlay || event.target.closest("button")) overlay.remove();
+        });
+        document.body.append(overlay);
+        overlay.querySelector("button").focus();
+      }
+
+      document.querySelector(".filter-row").addEventListener("click", event => {
+        const button = event.target.closest("[data-filter]");
+        if (!button) return;
+        activeFilter = button.dataset.filter;
+        render();
+      });
+      searchInput.addEventListener("input", render);
+      sortSelect.addEventListener("change", render);
 
       form.addEventListener("submit", event => {
         event.preventDefault();
@@ -490,11 +887,101 @@
           input.focus();
           return;
         }
-        tasks.push({ id: crypto.randomUUID(), text, completed: false });
+        tasks.push({
+          id: crypto.randomUUID(),
+          text,
+          completed: false,
+          priority: document.querySelector("#new-priority").value,
+          category: document.querySelector("#new-category").value,
+          notes: document.querySelector("#new-notes").value.trim(),
+          dueDate: document.querySelector("#new-due").value
+        });
         saveTasks();
+        activeFilter = "all";
+        searchInput.value = "";
         render();
         form.reset();
         input.focus();
+        announce("Added to the tiny army. It salutes you.");
+      });
+
+      undoButton.addEventListener("click", () => {
+        const action = undoAction;
+        undoAction = null;
+        if (action) action();
+      });
+
+      document.querySelector("#clear-button").addEventListener("click", () => {
+        const completedIds = tasks.filter(task => task.completed).map(task => task.id);
+        if (completedIds.length) removeTasks(completedIds);
+      });
+
+      document.querySelector("#pick-button").addEventListener("click", () => {
+        const openTasks = tasks.filter(task => !task.completed);
+        if (!openTasks.length) return;
+        const chosen = openTasks[Math.floor(Math.random() * openTasks.length)];
+        activeFilter = "all";
+        searchInput.value = "";
+        render();
+        const row = list.querySelector(`[data-task-id="${CSS.escape(chosen.id)}"]`);
+        row?.scrollIntoView({ behavior: "smooth", block: "center" });
+        row?.classList.add("spotlight");
+        announce(`The goblin chooses: “${chosen.text}.” There is no appeals process.`);
+      });
+
+      document.querySelector("#export-button").addEventListener("click", () => {
+        const blob = new Blob([JSON.stringify({ app: "Little List", exportedAt: new Date().toISOString(), tasks }, null, 2)], { type: "application/json" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `little-list-${todayKey()}.json`;
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+        announce("Tiny empire exported. Send it a postcard.");
+      });
+
+      const importFile = document.querySelector("#import-file");
+      document.querySelector("#import-button").addEventListener("click", () => importFile.click());
+      importFile.addEventListener("change", async () => {
+        const file = importFile.files[0];
+        if (!file) return;
+        try {
+          const data = JSON.parse(await file.text());
+          const imported = Array.isArray(data) ? data : data.tasks;
+          if (!Array.isArray(imported)) throw new Error("That file doesn’t contain a task list.");
+          const normalized = imported.map(task => normalizeTask({
+            ...task,
+            id: typeof task.id === "string" ? task.id : crypto.randomUUID()
+          }));
+          const existingIds = new Set(tasks.map(task => task.id));
+          normalized.forEach(task => {
+            if (existingIds.has(task.id)) task.id = crypto.randomUUID();
+            existingIds.add(task.id);
+            tasks.push(task);
+          });
+          saveTasks();
+          render();
+          announce(`Imported ${normalized.length} tasks. Your army has received reinforcements.`);
+        } catch (error) {
+          announce(`Import failed: ${error.message}`);
+        } finally {
+          importFile.value = "";
+        }
+      });
+
+      document.addEventListener("keydown", event => {
+        if (event.altKey || event.ctrlKey || event.metaKey) return;
+        const editing = ["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName);
+        if (event.key === "/" && !editing) {
+          event.preventDefault();
+          searchInput.focus();
+        } else if (event.key.toLowerCase() === "n" && !editing) {
+          event.preventDefault();
+          input.focus();
+        } else if (event.key === "Escape" && document.activeElement === searchInput) {
+          searchInput.value = "";
+          searchInput.blur();
+          render();
+        }
       });
 
       readTasks();
